@@ -21,8 +21,7 @@ public interface TarefasClient {
     @GetMapping("/eventos")
     List<TarefasDTOResponse> buscaListaDeTarefasPorPeriodo(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,
-            @RequestHeader("Authorization") String token);
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal);
 
     @GetMapping
     List<TarefasDTOResponse> buscaTarefasPorEmail(@RequestHeader("Authorization") String token);
@@ -34,8 +33,7 @@ public interface TarefasClient {
 
     @PatchMapping
     TarefasDTOResponse alteraStatus (@RequestParam String id,
-                                     @RequestParam StatusNotificacaoEnum status,
-                                     @RequestHeader("Authorization") String token);
+                                     @RequestParam StatusNotificacaoEnum status);
 
     @PutMapping
     TarefasDTOResponse atualizadaTarefa(@RequestBody TarefasDTORequest dto,

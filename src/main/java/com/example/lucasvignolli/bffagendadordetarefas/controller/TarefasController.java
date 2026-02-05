@@ -41,9 +41,8 @@ public class TarefasController {
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     public ResponseEntity<List<TarefasDTOResponse>> buscaListaDeTarefasPorPeriodo(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,
-            @RequestHeader(name = "Authorization", required = false) String token){
-        return ResponseEntity.ok(tarefasService.buscaDataEvento(dataInicial, dataFinal, token));
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal){
+        return ResponseEntity.ok(tarefasService.buscaDataEvento(dataInicial, dataFinal));
     }
 
     @GetMapping
@@ -69,9 +68,8 @@ public class TarefasController {
     @ApiResponse(responseCode = "200", description = "Status alterado com sucesso.")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     public ResponseEntity<TarefasDTOResponse> alteraStatus (@RequestParam String id,
-                                                            @RequestParam StatusNotificacaoEnum status,
-                                                            @RequestHeader(name = "Authorization", required = false) String token){
-        return ResponseEntity.ok(tarefasService.alteraStatus(id, status, token));
+                                                            @RequestParam StatusNotificacaoEnum status){
+        return ResponseEntity.ok(tarefasService.alteraStatus(id, status));
     }
 
     @PutMapping
