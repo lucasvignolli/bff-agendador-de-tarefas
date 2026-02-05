@@ -1,6 +1,6 @@
 package com.example.lucasvignolli.bffagendadordetarefas.business;
 
-import com.example.lucasvignolli.bffagendadordetarefas.business.dto.TarefasDTO;
+import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.TarefasDTOResponse;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.TarefasDTORequest;
 import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.client.TarefasClient;
 import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.enums.StatusNotificacaoEnum;
@@ -17,15 +17,15 @@ public class TarefasService {
 
     private final TarefasClient tarefasClient;
 
-    public TarefasDTO gravarTarefa(String token, TarefasDTORequest dto) {
+    public TarefasDTOResponse gravarTarefa(String token, TarefasDTORequest dto) {
         return tarefasClient.gravarTarefas(dto, token);
     }
 
-    public List<TarefasDTO> buscaDataEvento(LocalDateTime dataInicial, LocalDateTime dataFinal, String token) {
+    public List<TarefasDTOResponse> buscaDataEvento(LocalDateTime dataInicial, LocalDateTime dataFinal, String token) {
         return tarefasClient.buscaListaDeTarefasPorPeriodo(dataInicial, dataFinal, token);
     }
 
-    public List<TarefasDTO> buscaTarefasPorEmail(String token) {
+    public List<TarefasDTOResponse> buscaTarefasPorEmail(String token) {
         return tarefasClient.buscaTarefasPorEmail(token);
     }
 
@@ -33,11 +33,11 @@ public class TarefasService {
         tarefasClient.deletaTarefaPorId(id, token);
     }
 
-    public TarefasDTO alteraStatus(String id, StatusNotificacaoEnum status, String token) {
+    public TarefasDTOResponse alteraStatus(String id, StatusNotificacaoEnum status, String token) {
         return tarefasClient.alteraStatus(id, status, token);
     }
 
-    public TarefasDTO alteraTarefa(TarefasDTORequest dto, String id, String token){
+    public TarefasDTOResponse alteraTarefa(TarefasDTORequest dto, String id, String token){
         return tarefasClient.atualizadaTarefa(dto, id, token);
 
     }

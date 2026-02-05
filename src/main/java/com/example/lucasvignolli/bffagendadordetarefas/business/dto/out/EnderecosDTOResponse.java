@@ -1,4 +1,4 @@
-package com.example.lucasvignolli.bffagendadordetarefas.business.dto;
+package com.example.lucasvignolli.bffagendadordetarefas.business.dto.out;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 
-public class EnderecosDTO {
+public class EnderecosDTOResponse {
 
     private Long id;
     private String rua;
