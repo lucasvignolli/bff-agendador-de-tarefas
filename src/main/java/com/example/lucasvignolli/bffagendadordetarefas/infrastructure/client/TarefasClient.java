@@ -16,27 +16,29 @@ public interface TarefasClient {
 
     @PostMapping
     TarefasDTOResponse gravarTarefas(@RequestBody TarefasDTORequest dto,
-                                     @RequestHeader("Authorization") String token);
+                                     @RequestHeader(value = "Authorization", required = false) String token);
 
     @GetMapping("/eventos")
     List<TarefasDTOResponse> buscaListaDeTarefasPorPeriodo(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal);
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,
+            @RequestHeader(value = "Authorization", required = false) String token);
 
     @GetMapping
-    List<TarefasDTOResponse> buscaTarefasPorEmail(@RequestHeader("Authorization") String token);
+    List<TarefasDTOResponse> buscaTarefasPorEmail(@RequestHeader(value = "Authorization", required = false) String token);
 
 
     @DeleteMapping
     void deletaTarefaPorId(@RequestParam String id,
-                           @RequestHeader("Authorization") String token);
+                           @RequestHeader(value = "Authorization", required = false) String token);
 
     @PatchMapping
     TarefasDTOResponse alteraStatus (@RequestParam String id,
-                                     @RequestParam StatusNotificacaoEnum status);
+                                     @RequestParam StatusNotificacaoEnum status,
+                                     @RequestHeader(value = "Authorization", required = false) String token);
 
     @PutMapping
     TarefasDTOResponse atualizadaTarefa(@RequestBody TarefasDTORequest dto,
                                         @RequestParam String id,
-                                        @RequestHeader("Authorization") String token);
+                                        @RequestHeader(value = "Authorization", required = false) String token);
 }
