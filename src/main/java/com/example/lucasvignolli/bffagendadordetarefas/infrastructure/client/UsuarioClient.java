@@ -1,9 +1,9 @@
 package com.example.lucasvignolli.bffagendadordetarefas.infrastructure.client;
 
 
-import com.example.lucasvignolli.bffagendadordetarefas.business.dto.EnderecosDTO;
-import com.example.lucasvignolli.bffagendadordetarefas.business.dto.TelefonesDTO;
-import com.example.lucasvignolli.bffagendadordetarefas.business.dto.UsuarioDTO;
+import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.EnderecosDTOResponse;
+import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.TelefonesDTOResponse;
+import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.UsuarioDTOResponse;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.EnderecosDTORequest;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.LoginDTORequest;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.TelefonesDTORequest;
@@ -16,7 +16,7 @@ public interface UsuarioClient {
 
 
     @PostMapping
-    UsuarioDTO salvaUsuario(@RequestBody UsuarioDTORequest usuarioDTO);
+    UsuarioDTOResponse salvaUsuario(@RequestBody UsuarioDTORequest usuarioDTO);
 
 
     @PostMapping("/login")
@@ -24,39 +24,39 @@ public interface UsuarioClient {
 
 
     @GetMapping
-    UsuarioDTO buscaUsuario(@RequestParam("email") String email,
-                            @RequestHeader("Authorization") String token);
+    UsuarioDTOResponse buscaUsuario(@RequestParam("email") String email,
+                                    @RequestHeader(value = "Authorization", required = false) String token);
 
 
     @DeleteMapping("/{email}")
     void deletaUsuarioPorEmail(@PathVariable String email,
-                               @RequestHeader("Authorization") String token);
+                               @RequestHeader(value = "Authorization", required = false) String token);
 
 
     @PutMapping
-    UsuarioDTO atualizaDadosDeUsuario(@RequestBody UsuarioDTORequest dto,
-                                      @RequestHeader("Authorization") String token);
+    UsuarioDTOResponse atualizaDadosDeUsuario(@RequestBody UsuarioDTORequest dto,
+                                              @RequestHeader(value = "Authorization", required = false) String token);
 
 
     @PutMapping("/enderecos")
-    EnderecosDTO atualizaDadosDeEndereco(@RequestBody EnderecosDTORequest dto,
-                                         @RequestParam("id") Long id,
-                                         @RequestHeader("Authorization") String token);
+    EnderecosDTOResponse atualizaDadosDeEndereco(@RequestBody EnderecosDTORequest dto,
+                                                 @RequestParam("id") Long id,
+                                                 @RequestHeader(value = "Authorization", required = false) String token);
 
 
     @PutMapping("/telefones")
-    TelefonesDTO atualizaDadosDeTelefone(@RequestBody TelefonesDTORequest dto,
-                                         @RequestParam("id") Long id,
-                                         @RequestHeader("Authorization") String token);
+    TelefonesDTOResponse atualizaDadosDeTelefone(@RequestBody TelefonesDTORequest dto,
+                                                 @RequestParam("id") Long id,
+                                                 @RequestHeader(value = "Authorization", required = false) String token);
 
 
     @PostMapping("/enderecos")
-    EnderecosDTO cadastroNovoEndereço(@RequestBody EnderecosDTORequest dto,
-                                      @RequestHeader("Authorization") String token);
+    EnderecosDTOResponse cadastroNovoEndereço(@RequestBody EnderecosDTORequest dto,
+                                              @RequestHeader(value = "Authorization", required = false) String token);
 
 
     @PostMapping("/telefones")
-    TelefonesDTO cadastraNovoTelefone(@RequestBody TelefonesDTORequest dto,
-                                   @RequestHeader("Authorization") String token);
+    TelefonesDTOResponse cadastraNovoTelefone(@RequestBody TelefonesDTORequest dto,
+                                              @RequestHeader(value = "Authorization", required = false) String token);
 }
 

@@ -1,4 +1,4 @@
-package com.example.lucasvignolli.bffagendadordetarefas.business.dto;
+package com.example.lucasvignolli.bffagendadordetarefas.business.dto.out;
 
 
 import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.enums.StatusNotificacaoEnum;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TarefasDTO {
+public class TarefasDTOResponse {
 
     private String id;
     private String nomeTarefa;
