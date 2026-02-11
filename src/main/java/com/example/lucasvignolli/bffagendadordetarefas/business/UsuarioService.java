@@ -7,6 +7,7 @@ import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.Enderecos
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.LoginDTORequest;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.TelefonesDTORequest;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.UsuarioDTORequest;
+import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.ViaCepResponse;
 import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.client.UsuarioClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -55,5 +56,8 @@ public class UsuarioService {
         return usuarioClient.cadastraNovoTelefone(telefoneDto, token);
     }
 
+    public ViaCepResponse buscarEnderecoPorCep(String cep){
+        return usuarioClient.buscaCep(cep);
+    }
 }
 
