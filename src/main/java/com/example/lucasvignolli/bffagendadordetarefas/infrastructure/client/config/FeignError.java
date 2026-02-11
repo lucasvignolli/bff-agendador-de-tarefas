@@ -1,12 +1,13 @@
 package com.example.lucasvignolli.bffagendadordetarefas.infrastructure.client.config;
 
-import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.exceptions.BusinessException;
-import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.exceptions.ConflictExceptions;
-import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.exceptions.ResourceNotFoundException;
-import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.exceptions.UnauthorizedExceptions;
+import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.exceptions.*;
+import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.exceptions.IllegalArgumentException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
-import org.apache.commons.lang3.concurrent.ConcurrentException;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class FeignError implements ErrorDecoder {
 
@@ -14,15 +15,30 @@ public class FeignError implements ErrorDecoder {
     @Override
     public Exception decode(String s, Response response) {
 
+        String mensagemErro = mensagemErro(response);
+
         switch (response.status()){
             case 409:
-                return new ConflictExceptions("Erro atributo já existente");
+                return new ConflictExceptions("Erro: " + mensagemErro);
             case 403:
-                return new ResourceNotFoundException("Erro atributo não encontrado");
+                return new ResourceNotFoundException("Erro: " + mensagemErro);
             case 401:
-                return new UnauthorizedExceptions("Erro usuário não autorizado");
+                return new UnauthorizedExceptions("Erro: " + mensagemErro);
+            case 400:
+                return new IllegalArgumentException("Erro: " + mensagemErro);
             default:
-                return new BusinessException("Erro de servidor");
+                return new BusinessException("Erro: " + mensagemErro);
+        }
+    }
+
+    private String mensagemErro(Response response){
+        try {
+            if (Objects.isNull(response.body())){
+                return "";
+            }
+            return new String(response.body().asInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.lucasvignolli.bffagendadordetarefas.controller;
 import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.exceptions.ConflictExceptions;
 import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.exceptions.ResourceNotFoundException;
 import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.exceptions.UnauthorizedExceptions;
+import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.exceptions.IllegalArgumentException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,5 +26,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UnauthorizedExceptions.class)
     public ResponseEntity<String> handleUnauthorizedExceptions(UnauthorizedExceptions ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
