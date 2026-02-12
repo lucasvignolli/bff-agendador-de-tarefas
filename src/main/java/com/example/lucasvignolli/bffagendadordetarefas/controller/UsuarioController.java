@@ -109,7 +109,7 @@ public class UsuarioController {
     @ApiResponse(responseCode = "403", description = "Usuário não encontrado")
     @ApiResponse(responseCode = "401", description = "Credencias invalidas")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
-    public ResponseEntity<EnderecosDTOResponse> cadastroNovoEndereço(@RequestBody EnderecosDTORequest dto,
+    public ResponseEntity<EnderecosDTOResponse> cadastroNovoEndereco(@RequestBody EnderecosDTORequest dto,
                                                                      @RequestHeader(name = "Authorization", required = false) String token){
         return ResponseEntity.ok(usuarioService.cadastraEndereco(dto, token));
     }

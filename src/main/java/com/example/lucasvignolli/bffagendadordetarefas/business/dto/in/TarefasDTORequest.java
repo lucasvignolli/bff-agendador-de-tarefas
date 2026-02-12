@@ -1,7 +1,6 @@
 package com.example.lucasvignolli.bffagendadordetarefas.business.dto.in;
 
 
-import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.enums.StatusNotificacaoEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 

@@ -5,7 +5,6 @@ import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.TarefasD
 import com.example.lucasvignolli.bffagendadordetarefas.infrastructure.client.NotificadorClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Service
 @RequiredArgsConstructor

@@ -1,16 +1,15 @@
 package com.example.lucasvignolli.bffagendadordetarefas.infrastructure.client;
 
 
-import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.EnderecosDTOResponse;
-import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.TelefonesDTOResponse;
-import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.UsuarioDTOResponse;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.EnderecosDTORequest;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.LoginDTORequest;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.TelefonesDTORequest;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.in.UsuarioDTORequest;
+import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.EnderecosDTOResponse;
+import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.TelefonesDTOResponse;
+import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.UsuarioDTOResponse;
 import com.example.lucasvignolli.bffagendadordetarefas.business.dto.out.ViaCepResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "usuario", url = "${usuario.url}")
